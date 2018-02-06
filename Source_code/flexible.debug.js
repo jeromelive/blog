@@ -51,7 +51,6 @@
             dpr = 1;
         }
         scale = 1 / dpr;
-        // scale = 1;
     }
 
     docEl.setAttribute('data-dpr', dpr);
