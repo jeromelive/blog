@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>test</title>
+  <meta name="description" content="">
+  <meta http-equiv="Expires" content="-1" />
+  <meta http-equiv="pragram" content="no-cache" />
+  <meta name="apple-touch-fullscreen" content="YES" />
+  <meta name="format-detection" content="telephone=no,email=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <script src="../../Source_code/flexible.debug.js?v=b20170518"></script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+    html, body{
+      height: 100%;
+    }
+    .m-page {
+      padding: 0 .6rem;
+      font-size: .32rem;
+      color: black;
+      font-weight: bold;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-60%);
+    }
+    .m-indent-2 {
+      text-indent: .82rem;
+    }
+    .t-r {
+      text-align: right;
+    }
+    .m-top-100 {
+      margin-top: .5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="m-page">
+    <div>尊敬的用户：</div>
+    <div class="m-indent-2 m-top-100">
+      为向您提供更加优质的服务，我平台将于
+      <span class="start"></span>
+      -
+      <span class="end"></span>
+      进行系统升级，期间将暂停所有服务。
+    </div>
+    <div class="m-indent-2 m-top-100">
+      升级后，平台访问及审批、放款速度将大大提升，敬请期待。
+    </div>
+    <div class="t-r m-top-100">我来贷</div>
+    <div class="time t-r"></div>
+  </div>
+
+  <script>
+    serPageTitle(unescape(getUrlParam('title')));
+
+    // 时间戳 -> 日期
+    Date.prototype.format = function(format) {
+
+      function handleZero(pra) {
+        return(pra > 10 ? pra : '0' + pra);
+      }
+
+      var date = {
+        "M+": handleZero(this.getMonth() + 1) + '月',
+        "d+": handleZero(this.getDate()) + '日',
+        "h+": handleZero(this.getHours()),
+        "m+": handleZero(this.getMinutes()),
+        "s+": handleZero(this.getSeconds())
+      };
+      if (/(y+)/i.test(format)) {
+        format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length) + '年');
+      }
+      for (var k in date) {
+        if (new RegExp("(" + k + ")").test(format)) {
+          // format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+          format = format.replace(RegExp.$1, date[k]);
+        }
+      }
+      return format;
+    }
+
+    var start, end, time;
+    
+    start = new Date(parseInt(getUrlParam('start')));
+    end = new Date(parseInt(getUrlParam('end')));
+    time = new Date(parseInt(getUrlParam('time')));
+
+    end = start.getFullYear() === end.getFullYear() ? end.format('MM-dd h:m') : end.format('yyyy-MM-dd h:m')
+    start = start.format('yyyy-MM-dd h:m');
+    time = time.format('yyyy MM dd');
+
+    document.querySelector('.start').textContent = start;
+    document.querySelector('.end').textContent = end;
+    document.querySelector('.time').textContent = time;
+
+    // 设置页面标题
+    function serPageTitle(title) {
+      window.document.title = title;
+    }
+
+    // 获取 url 参数
+    function getUrlParam (name){
+      var str = "";
+      var reg = new RegExp("(^|&)"+name+"=([^&\\?\\s]*)([&\\?\\s]|$)");
+      var param = window.location.search.substr(1).match(reg);
+      if (param != null){
+        str = param[2];
+      }
+      return str;
+    }
+
+
+Date.prototype.format = function(format) {
+  var date = {
+    "M+": this.getMonth() + 1,
+    "d+": this.getDate(),
+    "h+": this.getHours(),
+    "m+": this.getMinutes(),
+    "s+": this.getSeconds()
+  };
+  if (/(y+)/i.test(format)) {
+    format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
+  }
+  for (var k in date) {
+    if (new RegExp("(" + k + ")").test(format)) {
+      format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+    }
+  }
+  return format;
+}
+
+var time= new Date(1518004800000);
+
+console.log(time.format('yyyy-MM-dd'));
+console.log(time.format('yyyy-MM-dd hh:mm:ss'));
+console.log(time.format('yyyy MM dd'));
+  </script>
+</body>
+</html>
