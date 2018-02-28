@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      /* 内部大小 */
+      width: 0px;
+      height: 0px;
+      margin: 50px;
+      display: inline-block;
+    }
+    .box {}
+    .box1 {
+      /* 边框大小 只设置三条边*/
+      border-top: #4285f4 solid;
+      border-right: transparent solid;
+      border-left: transparent solid;
+      border-width: 85px; 
+    }
+    .box2 {
+      /* 边框大小 只设置三条边*/
+      border-left: #c9f451 solid;
+      border-top: transparent solid;
+      border-bottom: transparent solid;
+      border-width: 70px; 
+    }
+    .box3 {
+      /* 边框大小 只设置三条边*/
+      border-bottom: #f45151 solid;
+      border-left: transparent solid;
+      border-right: transparent solid;
+      border-width: 60px; 
+    }
+    .box4 {
+      /* 边框大小 只设置三条边*/
+      border-right: #d8ca7d solid;
+      border-top: transparent solid;
+      border-bottom: transparent solid;
+      border-width: 50px; 
+    }
+    .foo {}
+    .foo1 {
+      border-top: #4285f4 solid;
+      border-right: transparent solid;
+      border-width: 85px;
+    }
+    .foo2 {
+      border-left: #c9f451 solid;
+      border-bottom: transparent solid;
+      border-width: 85px;
+    }
+    .foo3 {
+      border-top: #f45151 solid;
+      border-left: transparent solid;
+      border-width: 85px;
+    }
+    .foo4 {
+      border-right: #d8ca7d solid;
+      border-bottom: transparent solid;
+      border-width: 85px;
+    }
+  </style>
+</head>
+<body>
+  <h1>直角三角</h1>
+  <div class="box box1"></div>
+  <div class="box box2"></div>
+  <div class="box box3"></div>
+  <div class="box box4"></div>
+
+  <h1>靠边直角三角形</h1>
+  <div class="foo foo1"></div>
+  <div class="foo foo2"></div>
+  <div class="foo foo3"></div>
+  <div class="foo foo4"></div>
+</body>
+</html>
