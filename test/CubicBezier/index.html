@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+     div.p100 {
+      width: 100px;
+      height: 100px;
+      background-color: slateblue;
+    }
+    div.flex {
+      animation: flex 2s ease 0s;
+      -webkit-animation: flex 2s ease 0s;
+      animation-fill-mode: both;
+      -webkit-animation-fill-mode: both
+    }
+    @keyframes flex {
+      from {
+        margin-left: 0;
+      }
+      to {
+        margin-left: 100px;
+      }
+    }
+    @-webkit-keyframes flex {
+      from {
+        margin-left: 0;
+      }
+      to {
+        margin-left: 1000px;
+      }
+    }
+    div.shadow {
+      box-shadow: 10px 10px 10px 0px seagreen inset; 
+    }
+    div.float {
+      background-color: salmon;
+      /* overflow: hidden; */
+    }
+    div.float::after {
+      content: " ";
+      display: block;
+      clear: both;
+    }
+    div.float-l {
+      float: left;
+      margin-left: 5px;
+    }
+    div.radius {
+      border-radius: 100%;
+    }
+    div.transition {
+      transition: width 1s ease-out;
+    }
+    div.transition:hover {
+      width: 200px;
+    }
+    div.transform {
+      margin: 0 auto;
+      animation: scale 1s ease infinite alternate;
+      -webkit-animation: scale 1s ease infinite alternate;
+    }
+    @keyframes scale {
+      from {
+        transform: scale(.5, .5);
+      }
+      to {
+        transform: scale(2, 2);
+      }
+    }
+    @-webkit-keyframes scale {
+      from {
+        transform: scale(.5, .5);
+      }
+      to {
+        transform: scale(2, 2);
+      }
+    }
+
+    #pinStarWrapper {
+      width: 300px;
+      height: 300px;
+      position: relative;
+      margin: auto;
+    }
+
+    .pinStarLeaf {
+      width: 60px;
+      height: 120px;
+      position: absolute;
+      border-radius: 50%/30% 30% 70% 70%;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      opacity: .5;
+      transform-origin: 30px 30px;
+      transition: transform 1s cubic-bezier(.8, -.5, .2, 1.4);
+    }
+
+    .pinStarLeaf:nth-of-type(1) {
+      background-color: #B8F0F5;
+    }
+
+    .pinStarLeaf:nth-of-type(2) {
+      background-color: #9CF3DC;
+    }
+
+    .pinStarLeaf:nth-of-type(3) {
+      background-color: #94F3B0;
+    }
+
+    .pinStarLeaf:nth-of-type(4) {
+      background-color: #D2F8A1;
+    }
+
+    .pinStarLeaf:nth-of-type(5) {
+      background-color: #F3EDA2;
+    }
+
+    #pinStarCenter,
+    #pinStarCenterChkBox {
+      width: 45px;
+      height: 50px;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -60px;
+      bottom: 0;
+      margin: auto;
+      background-color: #fff;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    #pinStarCenter,
+    .pinStarLeaf {
+      pointer-events: none;
+    }
+
+    #pinStarCenter > input[type="checkbox"] {
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    #pinStarCenterChkBox:checked ~ .pinStarLeaf {
+      /* transition: transform 1s cubic-bezier(.8, -.5, .2, 1.4); */
+    }
+
+    #pinStarCenterChkBox:checked ~ .pinStarLeaf:nth-of-type(5) {
+      transform: rotatez(35deg);
+    }
+
+    #pinStarCenterChkBox:checked ~ .pinStarLeaf:nth-of-type(4) {
+      transform: rotatez(105deg);
+    }
+
+    #pinStarCenterChkBox:checked ~ .pinStarLeaf:nth-of-type(3) {
+      transform: rotatez(180deg);
+    }
+
+    #pinStarCenterChkBox:checked ~ .pinStarLeaf:nth-of-type(2) {
+      transform: rotatez(255deg);
+    }
+
+    #pinStarCenterChkBox:checked ~ .pinStarLeaf:nth-of-type(1) {
+      transform: rotatez(325deg);
+    }
+    #wrapper {
+      width: 600px;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 21pt;
+      font-family: courier new;
+      margin-bottom: 0;
+      color: #4D4D4D;
+      letter-spacing: 2px;
+    }
+
+    .point {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: #999;
+      font-size: 15pt;
+      font-family: monospace;
+    }
+
+    #lineAB {
+      width: 318px;
+      margin-top: 1px;
+      border-top: 2px dashed #999;
+    }
+
+    input[type="checkbox"] {
+      margin-bottom: 200px;
+      opacity: 0;
+    }
+
+    label {
+      position: relative;
+      left: 100px;
+      margin-bottom: 130px;
+      margin-left: -150px;
+      cursor: pointer;
+      font-family: 'georgia';
+      padding: 10px;
+      background-color: #999;
+      border-radius: 4px;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    #chk:checked+label,
+    label:hover {
+      background-color: #449FCA;
+    }
+
+    #box {
+      width: 50px;
+      height: 50px;
+      background-color: rgba(230, 76, 66, .8);
+      position: relative;
+      left: 30px;
+      border-radius: 4px;
+    }
+
+    #chk:checked ~ #box {
+      transform: translateX(330px);
+      transition: transform 6s cubic-bezier(1,1,1,1);
+    }
+  </style>
+</head>
+<body>
+    <div class="flex p100"></div>
+    <div class="p100"></div>
+    <div class="shadow p100"></div>
+    <div class="float">
+      <div class="float-l p100"></div>
+      <div class="float-l p100"></div>
+      <div class="float-l p100"></div>
+      <div class="float-l p100"></div>
+      <div class="float-l p100"></div>
+      <div class="float-l p100"></div>
+    </div>
+    <div class="radius p100"></div>
+    <div class="transition p100"></div>
+    <div class="transform p100"></div>
+    <div id="pinStarWrapper">
+      <input type="checkbox" id="pinStarCenterChkBox">
+      <div class="pinStarLeaf"></div>
+      <div class="pinStarLeaf"></div>
+      <div class="pinStarLeaf"></div>
+      <div class="pinStarLeaf"></div>
+      <div class="pinStarLeaf"></div>
+      <div id="pinStarCenter"></div>
+    </div>
+  
+    <h2>cubic-bezier(1,1,0,1)</h2>
+    <div id="wrapper">
+      <input type="checkbox" id="chk" />
+      <label for= "chk">Play/Reset</label>
+      <div id="box"></div>
+      <div id="pointA" class="point"><br /><br />A</div>
+      <div id="lineAB"></div>
+      <div id="pointB" class="point"><br /><br />B</div>
+    </div>
+</body>
+</html>
