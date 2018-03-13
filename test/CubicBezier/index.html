@@ -240,6 +240,61 @@
       transform: translateX(330px);
       transition: transform 1s cubic-bezier(.5,.5,.5,1.2);
     }
+    button {   
+      outline: none;
+      position: relative;   
+      overflow: hidden;   
+      padding: 5px 10px;   
+      background: #fff;   
+      border: 1px solid #d9d9d9;   
+      transition: all .3s;   
+    } 
+    .ripple {   
+      width: 0;   
+      height: 0;   
+      border-radius: 50%;   
+      background: rgba(0, 0, 0, .5);   
+      -webkit-transform: scale(0);   
+      transform: scale(0);   
+      position: absolute;   
+      opacity: 1;   
+    } 
+    .rippleEffect {   
+      -webkit-animation: rippleEffect 2s cubic-bezier(0.23, 1, 0.32, 1);   
+      animation: rippleEffect 2s cubic-bezier(0.23, 1, 0.32, 1);   
+    } 
+    @keyframes rippleEffect {   
+      100% {      
+        transform: scale(2);   
+        opacity: 0;   
+      } 
+    } 
+    @-webkit-keyframes rippleEffect {   
+      100% {   
+        -webkit-transform: scale(2);  
+        opacity: 0;   
+      }   
+    }
+    .test-hr {
+      width: 200px;
+    }
+    .test-hr > input{
+      outline: none;
+      border: none;
+      width: 100%;
+    }
+    .test-hr input ~ hr {
+      width: 0;
+      margin: 10px auto;
+      transition: width 1s cubic-bezier(.8,0,.2,1.1);
+      /* opacity: 0; */
+      /* background-color: turquoise; */
+    }
+    .test-hr input:focus ~ hr {
+      width: 100%;
+      /* opacity: 1; */
+    }
+
   </style>
 </head>
 <body>
@@ -276,5 +331,41 @@
       <div id="lineAB"></div>
       <div id="pointB" class="point"><br /><br />B</div>
     </div>
+
+    <div>
+      <button type="button"> 点我 </button>
+    </div>
+    <div class="test-hr">
+      <input type="text" placeholder="请点击">
+      <hr />
+    </div>
+
+
+    <script src="../../Source_code/jquery.min.js"></script>
+    <script>
+      function ripple(event, $this) {   
+        event = event || window.event;   
+        var x = event.pageX || event.originalEvent.pageX;   
+        var y = event.pageY || event.originalEvent.pageY;   
+        var wx = $this.width();   
+        x = x - $this.offset().left - wx / 2;   
+        y = y - $this.offset().top - wx / 2;   
+        var span = '<div class="ripple"></div>';   
+        $this.prepend(span);   
+        $(".ripple").css({   
+          width: wx,   
+          height: wx,   
+          top: y + "px",   
+          left: x + "px"   
+          }).addClass("rippleEffect");
+        $(document).one("webkitAnimationEnd animationend", ".ripple", function() {   
+          $(".ripple").remove();   
+        });   
+      }
+
+      $("button").on("click", function(e) {   
+        ripple(e, $(this));   
+      });
+    </script>
 </body>
 </html>
