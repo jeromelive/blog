@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+  <script>
+    function getUrlPara(name) {
+      var str = "";
+
+      // var reg = new RegExp("(^|&)"+name+"=([^&\\?\\s]*)([&\\?\\s]|$)");
+      // var params = window.location.search.substr(1);
+      // if (param != null){
+      //   str = param[2];
+      //   if(str && name == "channel"){
+      //     str = str.match(/^[\w-]*/)[0];
+      //   }
+      // }
+
+      var reg = new RegExp('(^|&)'+name+'=([^&]*)(&|$)');
+      var param = window.location.search.substr(1).match(reg);
+      var str = param[0].replace('&', '');
+      str = str.split('=')[1];
+      return str;
+    }
+    function verifyMobile(phone) {
+      var reg = new RegExp('^1[3-9](\\d{9})');
+      console.log(reg.test(phone))
+    }
+  </script>
+
+</body>
+</html>
